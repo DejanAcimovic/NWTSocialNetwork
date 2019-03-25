@@ -1,5 +1,6 @@
 package com.socialnetwork.userModule.UserModule.Entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -7,9 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 
 @Entity
@@ -22,10 +21,9 @@ public class UserGroup {
     @Column
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
+    
+    @ManyToMany(mappedBy = "groups")
+    private List<User> users = new ArrayList<>();
 
     public Integer getId() {
         return this.id;
@@ -37,8 +35,8 @@ public class UserGroup {
 
     protected UserGroup() {}
 
-    public User(String _name, User user) {
+    public UserGroup(String _name, List<User> users) {
         this.name = _name;
-        this.user = user;
+        this.users = users;
     }
 }

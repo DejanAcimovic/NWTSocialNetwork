@@ -2,14 +2,15 @@ package com.socialnetwork.userModule.UserModule.Entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
 
 
 @Entity
@@ -25,11 +26,29 @@ public class User {
     @Column
     private String lastName;
 
-//  Malo me zbunjuju ove veze pa ne znam kako ovdje staviti. Iz one UserGroupUser tabele bi trebalo valjda biti ovdje
-    // ManyToOne ili ne?
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_gorup_user",
+        joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name = "user_group_id", referencedColumnName = "id"))
+    private List<UserGroup> groups;
+
+    @ManyToMany
+    @JoinTable(name="tbl_friends",
+    joinColumns=@JoinColumn(name="personId"),
+    inverseJoinColumns=@JoinColumn(name="friendId")
+    )
+    private List<User> friends;
+
+    @ManyToMany
+    @JoinTable(name="tbl_friends",
+    joinColumns=@JoinColumn(name="friendId"),
+    inverseJoinColumns=@JoinColumn(name="personId")
+    )
+    private List<User> friendOf;
+
     public Integer getId() {
-    return id;
-}
+        return id;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -45,6 +64,4 @@ public class User {
         this.firstName = _firstName;
         this.lastName = _lastName;
     }
-
-
 }
