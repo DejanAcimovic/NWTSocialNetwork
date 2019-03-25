@@ -25,3 +25,6 @@ hs_err_pid*
 
 #VScode files
 .vscode/*
+
+#idea files
+.idea/*
