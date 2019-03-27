@@ -1,8 +1,9 @@
-package com.socialnetwork.usermodule.usermodule.Seed;
+﻿package com.socialnetwork.usermodule.usermodule.Seed;
 
 import com.socialnetwork.usermodule.usermodule.Repositories.UserRepository;
 import com.socialnetwork.usermodule.usermodule.Repositories.UserGroupRepository;
 import com.socialnetwork.usermodule.usermodule.Entities.*;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -27,20 +28,24 @@ public class UserSeeder implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         long count = userRepository.count();
 
-        if (count == 0) {
-            userRepository.save(new User("Dejan", "Aćimović"));
-            userRepository.save(new User("Adna", "Tucak"));
-            userRepository.save(new User("Nađa", "Žilić"));
 
+        
+        if(count == 0) {
+            userRepository.save(new User("Dejan","Aćimović"));
+            userRepository.save(new User("Adna","Tucak"));
+            userRepository.save(new User("Nađa","Žilić"));
 
+            UserGroup newGroup = new UserGroup("Grupa1", null);
 
+            userGroupRepository.save(newGroup);
+    
             for (User user : userRepository.findAll()) {
-
-                //userGroupRepository.save(new UserGroupRepository(user));
-                //userGroupRepository.save(new UserGroupRepository(1, user));
-
-
+                for(UserGroup group: userGroupRepository.findAll()){
+                    user.addUserGorup(group);
+                    userRepository.save(user);
+                }
             }
+
 
         }
     }
