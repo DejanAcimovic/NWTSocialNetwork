@@ -1,11 +1,13 @@
-package com.socialnetwork.postModule.PostModule;
+package com.socialnetwork.picturemodule.picturemodel.Seed;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PostModuleApplication {
+public class PictureModuleApplication {
+
     public static void main(String[] args) {
-        SpringApplication.run(PostModuleApplication.class, args);
+        SpringApplication.run(PictureModuleApplication.class, args);
     }
+
 }

@@ -35,6 +35,7 @@ public class PostLike {
         this.post = post;
     }
 
-    protected  PostLike() {}
-    
+    protected PostLike() {
+    }
+
 }

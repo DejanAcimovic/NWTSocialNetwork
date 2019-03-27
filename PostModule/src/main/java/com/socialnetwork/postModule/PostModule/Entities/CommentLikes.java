@@ -39,6 +39,7 @@ public class CommentLikes {
         this.comment = comment;
     }
 
-    protected  CommentLikes() {}
-    
+    protected CommentLikes() {
+    }
+
 }

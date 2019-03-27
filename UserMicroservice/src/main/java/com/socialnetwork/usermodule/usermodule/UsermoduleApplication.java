@@ -1,11 +1,13 @@
-package com.socialnetwork.postModule.PostModule;
+package com.socialnetwork.usermodule.usermodule;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PostModuleApplication {
+public class UsermoduleApplication {
+
     public static void main(String[] args) {
-        SpringApplication.run(PostModuleApplication.class, args);
+        SpringApplication.run(UsermoduleApplication.class, args);
     }
+
 }
