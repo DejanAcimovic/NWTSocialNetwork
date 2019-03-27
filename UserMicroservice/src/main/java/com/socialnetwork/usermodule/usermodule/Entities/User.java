@@ -29,7 +29,7 @@ public class User {
     private String lastName;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-    @JoinTable(name = "user_gorup_user",
+    @JoinTable(name = "user_group_user",
         joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
         inverseJoinColumns = @JoinColumn(name = "user_group_id", referencedColumnName = "id"))
     private List<UserGroup> groups = new ArrayList<>();

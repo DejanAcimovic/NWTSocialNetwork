@@ -1,4 +1,4 @@
-﻿package com.socialnetwork.usermodule.usermodule.Seed;
+package com.socialnetwork.usermodule.usermodule.Seed;
 
 import com.socialnetwork.usermodule.usermodule.Repositories.UserRepository;
 import com.socialnetwork.usermodule.usermodule.Repositories.UserGroupRepository;
@@ -31,9 +31,9 @@ public class UserSeeder implements ApplicationRunner {
 
         
         if(count == 0) {
-            userRepository.save(new User("Dejan","Aćimović"));
+            userRepository.save(new User("Dejan","A?imovi?"));
             userRepository.save(new User("Adna","Tucak"));
-            userRepository.save(new User("Nađa","Žilić"));
+            userRepository.save(new User("Na?a","?ili?"));
 
             UserGroup newGroup = new UserGroup("Grupa1", null);
 
