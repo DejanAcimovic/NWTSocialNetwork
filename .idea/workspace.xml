@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="68854445-d68f-4c69-95a8-7241674e37c4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/NWTSocialNetwork.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/NWTSocialNetwork.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserModule/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/UserModule/pom.xml" afterDir="false" />
-    </list>
+    <list default="true" id="68854445-d68f-4c69-95a8-7241674e37c4" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,7 +14,7 @@
         <entry file="file://$PROJECT_DIR$/PostModule/src/main/java/com/socialnetwork/postModule/PostModule/PostModuleApplication.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
+              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
             </state>
           </provider>
         </entry>
@@ -55,7 +51,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -73,14 +68,15 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553497027818" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553521506007" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/PictureModule" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -89,6 +85,7 @@
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
+        <option value="KotlinStandaloneScriptRunConfigurationType" />
         <option value="SpringBootApplicationConfigurationType" />
       </set>
     </option>
@@ -128,11 +125,12 @@
       <updated>1553467956908</updated>
       <workItem from="1553467997187" duration="4206000" />
       <workItem from="1553495313117" duration="1603000" />
+      <workItem from="1553521355953" duration="406000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5809000" />
+    <option name="totallyTimeSpent" value="6215000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -146,16 +144,13 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.31694403" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3214826" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Run Dashboard" />
-      <window_info anchor="bottom" id="Spring" weight="0.3289689" />
-      <window_info anchor="bottom" id="Dependency Viewer" weight="0.5777414" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -166,9 +161,12 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3289689" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32569557" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32569557" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.3289689" />
+      <window_info anchor="bottom" id="Dependency Viewer" order="13" weight="0.5777414" />
+      <window_info anchor="bottom" id="Spring" order="14" weight="0.3289689" />
+      <window_info anchor="bottom" id="Run Dashboard" order="15" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -231,16 +229,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/UserModule/src/main/java/com/socialnetwork/userModule/UserModule/Repositories/FriendListRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/UserModule/src/main/java/com/socialnetwork/userModule/UserModule/Repositories/FriendListRepository.java" />
     <entry file="file://$PROJECT_DIR$/UserModule/src/main/java/com/socialnetwork/userModule/UserModule/Repositories/UserGroupRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -251,16 +240,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/UserModule/src/main/java/com/socialnetwork/userModule/UserModule/Repositories/UserGroupUserRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/UserModule/src/main/java/com/socialnetwork/userModule/UserModule/Repositories/UserGroupUserRepository.java" />
     <entry file="file://$PROJECT_DIR$/UserModule/src/main/java/com/socialnetwork/userModule/UserModule/Seed/UserSeeder.java">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -271,16 +251,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/UserModule/src/main/java/com/socialnetwork/userModule/UserModule/Entities/FriendList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/UserModule/src/main/java/com/socialnetwork/userModule/UserModule/Entities/FriendList.java" />
     <entry file="file://$PROJECT_DIR$/UserModule/src/main/java/com/socialnetwork/userModule/UserModule/Entities/UserGroup.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -301,16 +272,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/UserModule/src/main/java/com/socialnetwork/userModule/UserModule/Entities/UserGroupUser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="57" selection-start-column="8" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/UserModule/src/main/java/com/socialnetwork/userModule/UserModule/Entities/UserGroupUser.java" />
     <entry file="file://$PROJECT_DIR$/PostModule/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -347,7 +309,7 @@
     <entry file="file://$PROJECT_DIR$/PostModule/src/main/java/com/socialnetwork/postModule/PostModule/PostModuleApplication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
     </entry>

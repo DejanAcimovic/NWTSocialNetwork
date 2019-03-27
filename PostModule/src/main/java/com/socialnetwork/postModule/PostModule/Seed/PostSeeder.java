@@ -30,18 +30,18 @@ public class PostSeeder implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         long count = postRepository.count();
-        
-        if(count == 0) {
+
+        if (count == 0) {
             postRepository.save(new Post(1, "Rajaa pada snijeg vanii!!"));
             postRepository.save(new Post(2, "SAMO SDA SDA"));
-    
+
             for (Post post : postRepository.findAll()) {
                 likeRepository.save(new PostLike(1, post));
 
                 commentRepository.save(new Comment("Predobar ti je post", post));
             }
 
-            for(Comment comment: commentRepository.findAll()){
+            for (Comment comment : commentRepository.findAll()) {
                 commentLikesRepository.save(new CommentLikes(1, comment));
             }
         }
