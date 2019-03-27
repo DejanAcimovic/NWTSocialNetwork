@@ -23,7 +23,7 @@ public class Post {
     private String text;
 
     @OneToMany(mappedBy = "post")
-    private List<Comment> comments= new ArrayList<>();
+    private List<Comment> comments = new ArrayList<>();
 
     @OneToMany(mappedBy = "post")
     private List<PostLike> likes = new ArrayList<>();
@@ -48,7 +48,8 @@ public class Post {
         return userId;
     }
 
-    protected Post(){} 
+    protected Post() {
+    }
 
     public Post(Integer _userId, String _text) {
         this.userId = _userId;

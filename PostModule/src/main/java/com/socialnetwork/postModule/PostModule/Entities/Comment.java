@@ -28,7 +28,7 @@ public class Comment {
 
     @OneToMany(mappedBy = "comment")
     private List<CommentLikes> likes;
-    
+
     public Integer getId() {
         return this.id;
     }
@@ -41,10 +41,11 @@ public class Comment {
         return this.likes;
     }
 
-    protected Comment() {}
+    protected Comment() {
+    }
 
     public Comment(String _text, Post post) {
         this.text = _text;
-        this.post = post; 
+        this.post = post;
     }
 }
