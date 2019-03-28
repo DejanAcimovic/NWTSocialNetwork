@@ -38,7 +38,7 @@ public class PostSeeder implements ApplicationRunner {
             for (Post post : postRepository.findAll()) {
                 likeRepository.save(new PostLike(1, post));
 
-                commentRepository.save(new Comment("Predobar ti je post", post));
+                commentRepository.save(new Comment("Predobar ti je post", post, 1));
             }
 
             for (Comment comment : commentRepository.findAll()) {

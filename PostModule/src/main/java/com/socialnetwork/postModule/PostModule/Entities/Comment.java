@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Comment {
@@ -22,8 +24,12 @@ public class Comment {
     @Column
     private String text;
 
+    @Column 
+    private Integer userId;
+
     @ManyToOne
     @JoinColumn(name = "post_id")
+    @JsonIgnore
     private Post post;
 
     @OneToMany(mappedBy = "comment")
@@ -44,8 +50,9 @@ public class Comment {
     protected Comment() {
     }
 
-    public Comment(String _text, Post post) {
-        this.text = _text;
+    public Comment(String text, Post post, Integer userId) {
+        this.text = text;
         this.post = post;
+        this.userId = userId;
     }
 }

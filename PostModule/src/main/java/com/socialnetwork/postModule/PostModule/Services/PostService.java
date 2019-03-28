@@ -22,5 +22,10 @@ public class PostService {
     public List<Post> getPostByUserId(Integer userId){
         return repository.findByUserId(userId);
     }
+
+    public Post SaveNewPost(Post post){
+        this.repository.save(post);
+        return post;
+    }
     
 }
