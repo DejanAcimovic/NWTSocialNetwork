@@ -27,5 +27,17 @@ public class PostService {
         this.repository.save(post);
         return post;
     }
+
+    public void deletePost(Integer postId) throws Exception {
+        List<Post> posts = this.repository.findById(postId);
+
+        if(posts.size() == 0){
+            throw new Exception("No post with this id exists");
+        }
+
+        Post post = posts.get(0);
+
+        this.repository.delete(post);
+    }
     
 }

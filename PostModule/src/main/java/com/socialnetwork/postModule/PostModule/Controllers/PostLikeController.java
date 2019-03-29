@@ -9,9 +9,12 @@ import com.socialnetwork.postModule.PostModule.Services.PostLikeService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 public class PostLikeController {
@@ -27,6 +30,17 @@ public class PostLikeController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Bad parameters");
         }
     }
+
+    @RequestMapping(value="/post/like/{likeId}", method=RequestMethod.DELETE)
+    public ResponseEntity<String> unlikePost(@RequestParam(name="likeId") Integer likeId) {
+        try {
+            this.service.unlikePost(likeId);
+            return new ResponseEntity<String>(HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Bad parameters");
+        }
+    }
+    
     
  
 }

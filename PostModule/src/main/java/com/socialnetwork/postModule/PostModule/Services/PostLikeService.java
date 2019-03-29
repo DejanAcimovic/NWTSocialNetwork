@@ -38,5 +38,19 @@ public class PostLikeService {
 
         return post;
     }
+
+    public PostLike unlikePost(Integer likeId) throws Exception {
+        List<PostLike> likes = this.likeRepository.findById(likeId);
+
+        if(likes.size() == 0){
+            throw new Exception("Like with this id does not exist");
+        }
+
+        PostLike like = likes.get(0);
+
+        this.likeRepository.delete(like);
+
+        return like;
+    }
 }
     

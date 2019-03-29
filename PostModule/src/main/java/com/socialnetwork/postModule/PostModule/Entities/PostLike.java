@@ -30,12 +30,18 @@ public class PostLike {
         return this.userId;
     }
 
-    public PostLike(Integer userId, Post post) {
+    public PostLike(Integer userId, Post post) throws Exception {
+        if(userId < 0 || userId == null){
+            throw new Exception("User id cannot be null or less than one");
+        }
         this.userId = userId;
+
+        if(post == null){
+            throw new Exception("Post cannot be null");
+        }
         this.post = post;
     }
 
-    protected PostLike() {
-    }
+    protected PostLike() {}
 
 }

@@ -27,7 +27,7 @@ public class CommentService {
         List<Post> posts = this.repository.findById(postId);
 
         if(posts.size() == 0){
-            throw new Exception("Bad parameters");
+            throw new Exception("Post with this id does not exist");
         }
 
         Post post = posts.get(0);
@@ -35,6 +35,18 @@ public class CommentService {
         this.commentRepository.save(new Comment(commentText, post, userId));
 
         return post;
+    }
+
+    public void deleteComment(Integer commentId) throws Exception {
+        List<Comment> comments = this.commentRepository.findById(commentId);
+
+        if(comments.size() == 0){
+            throw new Exception("Comment with this id does not exist");
+        }
+
+        Comment comment = comments.get(0);
+
+        this.commentRepository.delete(comment);
     }
     
 }

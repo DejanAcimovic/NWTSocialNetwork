@@ -3,9 +3,8 @@ package com.socialnetwork.postModule.PostModule.Controllers;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.socialnetwork.postModule.PostModule.Contracts.CommentInsertDTO;
-import com.socialnetwork.postModule.PostModule.Entities.Post;
-import com.socialnetwork.postModule.PostModule.Services.CommentService;
+import com.socialnetwork.postModule.PostModule.Contracts.CommentLikeInsertDTO;
+import com.socialnetwork.postModule.PostModule.Services.CommentLikeService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,29 +16,29 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
-public class CommentController {
+public class CommentLikeController {
 
     @Autowired
-    private CommentService service;
+    private CommentLikeService service;
 
-    @RequestMapping(value = "/comment", method = RequestMethod.POST)
-    public Post addNewComment(@RequestBody CommentInsertDTO param) {
+    @RequestMapping(value="/comment/like", method=RequestMethod.POST)
+    public ResponseEntity<String> likeComment(@RequestBody CommentLikeInsertDTO commentLike) {
         try {
-            return this.service.addCommentToPost(param.postId, param.text, param.userId);
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-        }
-    }
+            this.service.likeComment(commentLike.userId, commentLike.commentId);
 
-    @RequestMapping(value="/comment/{commentId}", method=RequestMethod.DELETE)
-    public ResponseEntity<String> deleteComment(@RequestParam(name="commentId") Integer commentId) {
-        try {
-            this.service.deleteComment(commentId);
             return new ResponseEntity<String>(HttpStatus.ACCEPTED);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
-    
-     
+
+    @RequestMapping(value="/comment/like/{likeId}", method = RequestMethod.DELETE)
+    public ResponseEntity<String> unlikeComment(@RequestParam(name="likeId") Integer likeId){
+        try {
+            this.service.unlikeComment(likeId);
+            return new ResponseEntity<String>(HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
+    }
 }
