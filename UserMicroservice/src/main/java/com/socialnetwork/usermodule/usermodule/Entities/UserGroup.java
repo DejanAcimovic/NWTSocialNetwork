@@ -1,5 +1,7 @@
 package com.socialnetwork.usermodule.usermodule.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +25,7 @@ public class UserGroup {
 
 
     @ManyToMany(mappedBy = "groups")
+    @JsonIgnore
     private List<User> users = new ArrayList<>();
 
     public Integer getId() {
@@ -36,8 +39,21 @@ public class UserGroup {
     protected UserGroup() {
     }
 
-    public UserGroup(String _name, List<User> users) {
-        this.name = _name;
-        this.users = users;
+    public UserGroup(String _name, List<User> users) throws Exception {
+        boolean valid = _name.matches("^[a-zA-Z\\s]*$");
+        if(valid) {
+            this.setName(_name);
+            this.users = users;
+        }
+        else
+            throw new Exception("Bad parameters");
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<User> getUsers() {
+        return users;
     }
 }

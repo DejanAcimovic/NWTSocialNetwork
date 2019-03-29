@@ -31,20 +31,21 @@ public class UserSeeder implements ApplicationRunner {
 
         
         if(count == 0) {
-            userRepository.save(new User("Dejan","A?imovi?"));
+            userRepository.save(new User("Dejan","Acimovic"));
             userRepository.save(new User("Adna","Tucak"));
-            userRepository.save(new User("Na?a","?ili?"));
+            userRepository.save(new User("Nada","Zilic"));
 
-            UserGroup newGroup = new UserGroup("Grupa1", null);
+            UserGroup newGroup = new UserGroup("GrupaJedan", null);
 
             userGroupRepository.save(newGroup);
     
             for (User user : userRepository.findAll()) {
                 for(UserGroup group: userGroupRepository.findAll()){
-                    user.addUserGorup(group);
+                    user.addUserGroup(group);
                     userRepository.save(user);
                 }
             }
+
 
 
         }

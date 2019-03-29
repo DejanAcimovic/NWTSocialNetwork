@@ -61,16 +61,43 @@ public class User {
     }
 
 
-    public void addUserGorup(UserGroup group){
-        this.groups.add(group);
+    public void addUserGroup(UserGroup group){
+        this.getGroups().add(group);
+    }
+
+    public void addUserFriend(User friend){
+        this.getFriends().add(friend);
     }
 
     protected User() {}
 
 
-    public User(String _firstName, String _lastName) {
-        this.firstName = _firstName;
-        this.lastName = _lastName;
-        this.groups = new ArrayList<UserGroup>();
+    public User(String _firstName, String _lastName) throws Exception {
+
+        boolean valid = _firstName.matches("(?i)(^[a-z])((?![ .,'-]$)[a-z .,'-]){0,24}$");
+        boolean validLast = _lastName.matches("(?i)(^[a-z])((?![ .,'-]$)[a-z .,'-]){0,24}$");
+        //The first name is between 1 and 25 characters.
+        //The first name can only start with an a-z (ignore case) character.
+        //After that the first name can contain a-z (ignore case) and [ '-,.].
+        //The first name can only end with an a-z (ignore case) character.
+
+        if(valid==true && validLast==true) {
+            this.firstName = _firstName;
+            this.lastName = _lastName;
+            this.groups = new ArrayList<UserGroup>();
+        }
+
+        else
+            throw new Exception("Parameters invalid");
     }
+
+    public List<User> getFriends() {
+        return friends;
+    }
+
+    public List<UserGroup> getGroups() {
+        return groups;
+    }
+
+
 }
