@@ -1,7 +1,7 @@
 
 package com.socialnetwork.picturemodule.picturemodel.Entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.models.auth.In;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,37 +11,27 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 
 @Entity
-public class Picture {
+public class ProfilePicture {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false)
     private Integer id;
 
     @Column(nullable = false)
-    private Integer postId;
-
+    private Integer userId;
     @Lob
     @Column
-    private byte[] picture;
+    private byte[] profilePicture;
 
-    protected  Picture() {}
+    protected  ProfilePicture() {}
 
-    public Picture(byte[] picture, Integer postId){
-        this.picture = picture;
-        this.postId = postId;
+    public ProfilePicture(byte[] picture, Integer userId){
+
+        this.profilePicture = picture;
+        this.userId = userId;
     }
 
     public byte[] getPicture() {
-        return picture;
+        return profilePicture;
     }
-
-    public Integer getPostId(){
-        return postId;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-
 }
