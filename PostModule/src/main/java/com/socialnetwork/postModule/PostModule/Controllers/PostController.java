@@ -30,11 +30,16 @@ public class PostController {
 
     @RequestMapping(value="/posts/{userId}", method=RequestMethod.GET)
     public @ResponseBody List<Post> getPostByUserId(@PathVariable("userId") Integer userId) {
-        return service.getPostByUserId(userId);
+        
+        try {
+            return service.getPostByUserId(userId);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
     }
 
     @RequestMapping(value="/post", method=RequestMethod.POST)
-    public @ResponseBody Post requestMethodName(@RequestBody PostInsertDTO post) {
+    public @ResponseBody Post createNewPost(@RequestBody PostInsertDTO post) {
         try {
             return service.SaveNewPost(post.toEntity());
         } catch (Exception e) {
