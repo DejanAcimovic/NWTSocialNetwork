@@ -22,10 +22,10 @@ public class Post {
     @Column
     private String text;
 
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post", orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
 
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post", orphanRemoval = true)
     private List<PostLike> likes = new ArrayList<>();
 
     public List<PostLike> getLikes() {
@@ -51,8 +51,16 @@ public class Post {
     protected Post() {
     }
 
-    public Post(Integer _userId, String _text) {
+    public Post(Integer _userId, String _text) throws Exception {
+
+        if(_userId < 0 || _userId == null){
+            throw new Exception("User id cannot be null or less than one");
+        }
         this.userId = _userId;
+
+        if(_text.replaceAll("\\s+","").equals(new String(""))){
+            throw new Exception("Post text must not be null");
+        }
         this.text = _text;
     }
 }
