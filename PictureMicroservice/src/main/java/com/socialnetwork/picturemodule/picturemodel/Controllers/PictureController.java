@@ -1,5 +1,6 @@
 package com.socialnetwork.picturemodule.picturemodel.Controllers;
 
+import com.socialnetwork.picturemodule.picturemodel.Contracts.PictureDTO;
 import com.socialnetwork.picturemodule.picturemodel.Services.PictureService;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +24,7 @@ public class PictureController {
 
     //vraćanje slike po imageid
     @RequestMapping(value="/picture/{imageId}", method=RequestMethod.GET)
-    public @ResponseBody byte[] getImage(@RequestParam("imageId") Integer imageId)  throws IOException {
+    public @ResponseBody String getImage(@RequestParam("imageId") Integer imageId)  throws IOException {
         return this.service.getPictureById(imageId);
     }
 
@@ -34,11 +35,12 @@ public class PictureController {
         return this.service.getPicturesIdByPostId(postId);
     }
 
+
     //post slika po postid
-    //@RequestMapping(value="/pictures/{postId}", method=RequestMethod.POST)
-    //public @ResponseBody Picture requestMethodName(@RequestBody PostInsertDTO post) {
-        //return service.SaveNewPost(post.toEntity());
-   // }
+    @RequestMapping(value="/pictures/{postId}", method=RequestMethod.POST)
+    public @ResponseBody Picture requestMethodName(@RequestBody PictureDTO picture) {
+        return service.SaveNewPicture(picture.toEntity());
+   }
 
 
 

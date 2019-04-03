@@ -36,15 +36,15 @@ public class Seeder implements ApplicationRunner {
         long count = repository.count();
 
         if(count == 0) {
-            URL url = new URL("https://videnskab.dk/sites/default/files/styles/columns_12_12_desktop/public/article_media/hus_1.jpg?itok=1xFNM2ZL&timestamp=1464219173");
-            BufferedImage bufferedImage = ImageIO.read(url);
+            String url = "https://videnskab.dk/sites/default/files/styles/columns_12_12_desktop/public/article_media/hus_1.jpg?itok=1xFNM2ZL&timestamp=1464219173";
+            /*BufferedImage bufferedImage = ImageIO.read(url);
 
             // get DataBufferBytes from Raster
             WritableRaster raster = bufferedImage .getRaster();
             DataBufferByte data   = (DataBufferByte) raster.getDataBuffer();
-
-            repository.save(new Picture(data.getData(),2));
-            profilePictureRepository.save(new ProfilePicture(data.getData(),1));
+*/
+            repository.save(new Picture(url,2));
+            profilePictureRepository.save(new ProfilePicture(url,1));
         }
     }
 }

@@ -20,7 +20,7 @@ public class PictureService {
     }
 
     //vraćanje slike po imageid
-    public byte[] getPictureById(Integer imageId){
+    public String getPictureById(Integer imageId){
         Picture picture = pictureRepository.findPictureById(imageId);
         return picture.getPicture();
     }
@@ -35,10 +35,14 @@ public class PictureService {
             idevi.add(pic.getId());
         }
         return idevi;
-
     }
 
 
+    public Picture SaveNewPicture(Picture picture) {
 
+        this.pictureRepository.save(picture);
+        return  picture;
+        }
     }
+
 

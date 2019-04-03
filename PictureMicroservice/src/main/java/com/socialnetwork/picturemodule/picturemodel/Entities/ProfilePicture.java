@@ -19,19 +19,19 @@ public class ProfilePicture {
 
     @Column(nullable = false)
     private Integer userId;
-    @Lob
-    @Column
-    private byte[] profilePicture;
+
+    @Column (nullable = false)
+    private String profilePicture;
 
     protected  ProfilePicture() {}
 
-    public ProfilePicture(byte[] picture, Integer userId){
+    public ProfilePicture(String picture, Integer userId){
 
         this.profilePicture = picture;
         this.userId = userId;
     }
 
-    public byte[] getPicture() {
+    public String getProfilePicture() {
         return profilePicture;
     }
 }

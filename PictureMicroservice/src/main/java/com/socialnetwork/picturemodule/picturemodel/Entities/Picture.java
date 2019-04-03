@@ -20,18 +20,18 @@ public class Picture {
     @Column(nullable = false)
     private Integer postId;
 
-    @Lob
-    @Column
-    private byte[] picture;
+
+    @Column (nullable = false)
+    private String picture;
 
     protected  Picture() {}
 
-    public Picture(byte[] picture, Integer postId){
+    public Picture(String picture, Integer postId){
         this.picture = picture;
         this.postId = postId;
     }
 
-    public byte[] getPicture() {
+    public String getPicture() {
         return picture;
     }
 

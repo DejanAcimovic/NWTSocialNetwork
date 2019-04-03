@@ -1,5 +1,6 @@
 package com.socialnetwork.picturemodule.picturemodel.Services;
 
+import com.socialnetwork.picturemodule.picturemodel.Entities.Picture;
 import com.socialnetwork.picturemodule.picturemodel.Entities.ProfilePicture;
 import com.socialnetwork.picturemodule.picturemodel.Repositories.ProfilePictureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +17,17 @@ public class ProfilePicService {
         this.profilePictureRepository = _repository;
     }
 
-    public byte[] getProfilePictureByUserId(Integer userId){
+    public String getProfilePictureByUserId(Integer userId){
 
         ProfilePicture profilePicture = profilePictureRepository.findProfilePictureByUserId(userId);
-        return profilePicture.getPicture();
-
+        return profilePicture.getProfilePicture();
 
     }
 
+    public ProfilePicture saveNewProfilePicture(ProfilePicture picture) {
+        this.profilePictureRepository.save(picture);
+        return  picture;
+    }
 
 }
 
