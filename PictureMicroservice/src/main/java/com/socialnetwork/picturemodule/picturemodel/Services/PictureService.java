@@ -20,17 +20,24 @@ public class PictureService {
     }
 
     //vraćanje slike po imageid
-    public String getPictureById(Integer imageId){
+    public String getPictureById(Integer imageId) throws Exception {
         Picture picture = pictureRepository.findPictureById(imageId);
+
+        if(picture == null) {
+            throw new Exception("No picture found with given ID");
+        }
         return picture.getPicture();
     }
 
     //vraćanje ideva slika po idu posta
-    public List<Integer> getPicturesIdByPostId(Integer postId) {
+    public List<Integer> getPicturesIdByPostId(Integer postId) throws Exception {
 
         List<Integer> idevi = new ArrayList<Integer>(){};
         List<Picture> pictures = pictureRepository.findPicturesIdByPostId(postId);
 
+        if(pictures.size() == 0) {
+            throw new Exception("No pictures found with given postID");
+        }
         for (Picture pic:pictures) {
             idevi.add(pic.getId());
         }
@@ -38,8 +45,11 @@ public class PictureService {
     }
 
 
-    public Picture SaveNewPicture(Picture picture) {
+    public Picture SaveNewPicture(Picture picture) throws Exception {
 
+        if(picture == null) {
+            throw new Exception("Picture is not valid");
+        }
         this.pictureRepository.save(picture);
         return  picture;
         }

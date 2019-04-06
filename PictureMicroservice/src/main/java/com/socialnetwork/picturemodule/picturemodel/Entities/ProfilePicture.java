@@ -25,13 +25,37 @@ public class ProfilePicture {
 
     protected  ProfilePicture() {}
 
-    public ProfilePicture(String picture, Integer userId){
+    public ProfilePicture(String picture, Integer userId) throws Exception {
 
-        this.profilePicture = picture;
+        String regex = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+
+        if(picture.matches(regex)) {
+
+            this.profilePicture = picture;
+        }
+        else {
+            throw new Exception("URL is not valid");
+        }
+
+       // this.profilePicture = picture;
         this.userId = userId;
     }
 
     public String getProfilePicture() {
         return profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) throws Exception {
+
+        String regex = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+
+        if(profilePicture.matches(regex)) {
+
+            this.profilePicture = profilePicture;
+        }
+        else {
+            throw new Exception("URL is not valid");
+        }
+
     }
 }

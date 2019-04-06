@@ -26,9 +26,20 @@ public class Picture {
 
     protected  Picture() {}
 
-    public Picture(String picture, Integer postId){
-        this.picture = picture;
+    public Picture(String picture, Integer postId) throws Exception {
+
+        String regex = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+
+        if(picture.matches(regex)) {
+
+            this.picture = picture;
+        }
+        else {
+            throw new Exception("URL is not valid");
+        }
+
         this.postId = postId;
+        //this.picture = picture;
     }
 
     public String getPicture() {
@@ -43,5 +54,19 @@ public class Picture {
         return id;
     }
 
+    public void setPicture(String picture) throws Exception {
 
+        String regex = "<\\b(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]>";
+
+        if(picture.matches(regex)) {
+
+            this.picture = picture;
+        }
+        else {
+            throw new Exception("URL is not valid");
+        }
+
+
+        this.picture = picture;
+    }
 }

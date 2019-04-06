@@ -38,7 +38,7 @@ public class ProfilePictureDTO {
         this.userId = postId;
     }
 
-    public ProfilePicture toEntity() {
+    public ProfilePicture toEntity() throws Exception {
 
         return new ProfilePicture(this.url,this.userId);
     }

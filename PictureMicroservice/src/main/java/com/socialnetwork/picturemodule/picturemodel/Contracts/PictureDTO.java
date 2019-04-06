@@ -30,7 +30,7 @@ public class PictureDTO {
         this.postId = postId;
     }
 
-    public Picture toEntity() {
+    public Picture toEntity() throws Exception {
 
         return new Picture(this.url,this.postId);
     }
