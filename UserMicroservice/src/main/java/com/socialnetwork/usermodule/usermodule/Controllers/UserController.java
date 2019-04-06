@@ -66,6 +66,16 @@ public class UserController {
         }
     }
 
+    @RequestMapping(value="/user/userId", method=RequestMethod.DELETE)
+    public ResponseEntity<String> deleteUser(@RequestParam(name="userId") Integer userId) {
+        try {
+            this.service.deleteUser(userId);
+            return new ResponseEntity<String>(HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
+    }
+
 
 
 
