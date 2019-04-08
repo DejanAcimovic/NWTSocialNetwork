@@ -66,4 +66,14 @@ public class UserService {
 
     }
 
+    public void deleteUser(Integer userId) throws Exception {
+        User user = this.repository.findById(userId);
+
+        if(user == null){
+            throw new Exception("User with this id does not exist");
+        }
+
+        this.repository.delete(user);
+    }
+
 }

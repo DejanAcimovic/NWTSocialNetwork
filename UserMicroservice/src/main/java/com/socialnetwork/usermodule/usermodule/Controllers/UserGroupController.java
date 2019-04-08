@@ -42,4 +42,14 @@ public class UserGroupController {
         }
     }
 
+    @RequestMapping(value="/user_group/groupId", method=RequestMethod.DELETE)
+    public ResponseEntity<String> deleteGroup(@RequestParam(name="groupId") Integer groupId) {
+        try {
+            this.service.deleteGroup(groupId);
+            return new ResponseEntity<String>(HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
+    }
+
 }
