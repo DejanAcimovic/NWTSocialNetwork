@@ -44,4 +44,15 @@ public class UserGroupService {
         group.getUsers().add(user);
 
     }
+
+
+    public void deleteGroup(Integer groupId) throws Exception {
+        UserGroup group = this.repository.findById(groupId);
+
+        if(group == null){
+            throw new Exception("Group with this id does not exist");
+        }
+
+        this.repository.delete(group);
+    }
 }
