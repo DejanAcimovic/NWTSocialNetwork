@@ -1,7 +1,7 @@
 
 package com.socialnetwork.picturemodule.picturemodel.Entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.models.auth.In;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,62 +11,51 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 
 @Entity
-public class Picture {
+public class ProfilePicture {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false)
     private Integer id;
 
     @Column(nullable = false)
-    private Integer postId;
-
+    private Integer userId;
 
     @Column (nullable = false)
-    private String picture;
+    private String profilePicture;
 
-    protected  Picture() {}
+    protected  ProfilePicture() {}
 
-    public Picture(String picture, Integer postId) throws Exception {
+    public ProfilePicture(String picture, Integer userId) throws Exception {
 
         String regex = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
 
         if(picture.matches(regex)) {
 
-            this.picture = picture;
+            this.profilePicture = picture;
         }
         else {
             throw new Exception("URL is not valid");
         }
 
-        this.postId = postId;
-        //this.picture = picture;
+       // this.profilePicture = picture;
+        this.userId = userId;
     }
 
-    public String getPicture() {
-        return picture;
+    public String getProfilePicture() {
+        return profilePicture;
     }
 
-    public Integer getPostId(){
-        return postId;
-    }
+    public void setProfilePicture(String profilePicture) throws Exception {
 
-    public Integer getId() {
-        return id;
-    }
+        String regex = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
 
-    public void setPicture(String picture) throws Exception {
+        if(profilePicture.matches(regex)) {
 
-        String regex = "<\\b(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]>";
-
-        if(picture.matches(regex)) {
-
-            this.picture = picture;
+            this.profilePicture = profilePicture;
         }
         else {
             throw new Exception("URL is not valid");
         }
 
-
-        this.picture = picture;
     }
 }
