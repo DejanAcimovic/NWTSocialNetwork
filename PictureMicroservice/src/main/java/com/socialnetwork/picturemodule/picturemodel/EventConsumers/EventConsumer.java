@@ -9,8 +9,13 @@ import com.socialnetwork.picturemodule.picturemodel.Contracts.PicturesDTO;
 import com.socialnetwork.picturemodule.picturemodel.Entities.Picture;
 import com.socialnetwork.picturemodule.picturemodel.Services.PictureService;
 
+
+import com.socialnetwork.picturemodule.picturemodel.Entities.ProfilePicture;
+import com.socialnetwork.picturemodule.picturemodel.Services.ProfilePicService;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 /**
  * EventConsumer
@@ -18,7 +23,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class EventConsumer {
 
     @Autowired
-    PictureService service;
+    PictureService pictureService;
+
+
+    @Autowired
+    ProfilePicService profilePictureService;
+
+
+    @RabbitListener(queues = "postDeletedQueues")
+    public void deletePictures(String postid) throws Exception {
+
+        Integer id = Integer.valueOf(postid);
+
+        pictureService.DeletePicturesWithPostId(id);
+    }
+
 
     @RabbitListener(queues = "postServiceQueue")
     public void getMessage(String urls) {
@@ -30,7 +49,7 @@ public class EventConsumer {
 
             for (String url : pictures.urls) {
                 try {
-                    service.SaveNewPicture(new Picture(url, pictures.id));
+                    pictureService.SaveNewPicture(new Picture(url, pictures.id));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -45,5 +64,22 @@ public class EventConsumer {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+    }
+
+    @RabbitListener(queues = "userServiceQueue")
+    public void addProfilePicture(String messageUrl){
+
+        String[] parts =messageUrl.split(",");
+        String userID = parts[0];
+        String url = parts[1];
+        try {
+            ProfilePicture pp = new ProfilePicture(url, Integer.valueOf(userID));
+            profilePictureService.saveNewProfilePicture(pp);
+        }
+        catch (Exception e){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
+
+        //System.out.println(message);
     }
 }

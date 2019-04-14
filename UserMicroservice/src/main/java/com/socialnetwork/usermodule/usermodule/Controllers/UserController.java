@@ -21,20 +21,37 @@ public class UserController {
 
     @RequestMapping(value = "get/user/user_id",method = RequestMethod.GET)
     public @ResponseBody
-    User getUserById(@RequestParam("userId") Integer userId) {
-        return service.getUserById(userId);
+    User getUserById(@RequestParam("userId") Integer userId){
+       try{
+           return service.getUserById(userId);
+       }
+       catch (Exception e){
+           throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+       }
+
     }
 
     @RequestMapping(value = "get/user/{first_name}",method = RequestMethod.GET)
     public @ResponseBody
     User getUserByFirstName(@RequestParam("firstName") String firstName){
-        return service.getUserByFirstName(firstName);
+        try {
+            return service.getUserByFirstName(firstName);
+        }
+        catch (Exception e){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
     }
 
     @RequestMapping(value = "get/users",method = RequestMethod.GET)
     public @ResponseBody
     List<User> getUserFriends(@RequestParam("users") Integer users){
-        return service.getUserFriends(users);
+
+        try {
+            return service.getUserFriends(users);
+        }
+        catch (Exception e){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
     }
 
     @RequestMapping(value = "get/usergroups/{user_id}",method = RequestMethod.GET)
@@ -46,7 +63,7 @@ public class UserController {
     @RequestMapping(value="/user", method=RequestMethod.POST)
     public @ResponseBody User requestMethodName(@RequestBody UserDTO user_dto) {
         try {
-            return service.saveNewUser(user_dto.toEntity());
+            return service.saveNewUser(user_dto.toEntity(),user_dto.url);
         }
         catch (Exception e){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
