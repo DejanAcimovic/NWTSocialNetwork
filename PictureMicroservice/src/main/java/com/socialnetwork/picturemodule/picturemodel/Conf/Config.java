@@ -53,6 +53,7 @@ public class Config {
     }
 
     @Bean
+
     public Queue queue2() {
         return new Queue("userServiceQueue");
     }
@@ -65,6 +66,19 @@ public class Config {
                 .with("user.created");
     }
     
+
+    public Queue queue1() {
+        return new Queue("postDeletedQueues");
+    }
+
+    @Bean
+    public Binding binding1(TopicExchange eventExchange) {
+        return BindingBuilder
+                .bind(new Queue("postDeletedQueues"))
+                .to(eventExchange)
+                .with("post.deleted");
+    }
+
     @Bean
     public EventConsumer eventReceiver() {
       return new EventConsumer();

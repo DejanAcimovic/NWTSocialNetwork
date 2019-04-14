@@ -1,5 +1,6 @@
 package com.socialnetwork.picturemodule.picturemodel.EventConsumers;
 
+
 import com.socialnetwork.picturemodule.picturemodel.Entities.ProfilePicture;
 import com.socialnetwork.picturemodule.picturemodel.Services.ProfilePicService;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -12,8 +13,22 @@ import org.springframework.web.server.ResponseStatusException;
  */
 public class EventConsumer {
 
+
     @Autowired
     ProfilePicService service;
+
+
+    @Autowired
+    PictureService service;
+
+    @RabbitListener(queues = "postDeletedQueues")
+    public void deletePictures(String postid) throws Exception {
+
+        Integer id = Integer.valueOf(postid);
+
+        service.DeletePicturesWithPostId(id);
+    }
+
 
     @RabbitListener(queues = "postServiceQueue")
     public void getMessage(String message){
