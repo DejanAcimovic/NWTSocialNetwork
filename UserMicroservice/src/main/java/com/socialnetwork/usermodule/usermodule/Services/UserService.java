@@ -3,6 +3,8 @@ package com.socialnetwork.usermodule.usermodule.Services;
 import com.socialnetwork.usermodule.usermodule.Entities.User;
 import com.socialnetwork.usermodule.usermodule.Entities.UserGroup;
 import com.socialnetwork.usermodule.usermodule.Repositories.UserRepository;
+import org.springframework.amqp.core.Exchange;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,12 @@ import java.util.List;
 
 @Service
 public class UserService {
+
+    @Autowired
+    RabbitTemplate rabbitTemplate;
+
+    @Autowired
+    Exchange exchange;
 
     private UserRepository repository;
 
@@ -53,7 +61,11 @@ public class UserService {
     }
 
     public User saveNewUser (User user){
+
         this.repository.save(user);
+
+        String routingKey = "user.created";
+        rabbitTemplate.convertAndSend(exchange.getName(),routingKey, "E kreirao se novi user");
         return user;
     }
 
