@@ -7,7 +7,6 @@ import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Exchange;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.TopicExchange;
-import org.springframework.amqp.core.BindingBuilder.GenericArgumentsConfigurer;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -53,20 +52,19 @@ public class Config {
     }
 
     @Bean
-
     public Queue queue2() {
-        return new Queue("userServiceQueue");
+        return new Queue("postServiceQueue");
     }
 
     @Bean
     public Binding binding2(Queue queue2, TopicExchange eventExchange) {
         return BindingBuilder
-                .bind(queue2)
+                .bind(new Queue("postServiceQueue"))
                 .to(eventExchange)
                 .with("user.created");
     }
     
-
+    @Bean
     public Queue queue1() {
         return new Queue("postDeletedQueues");
     }

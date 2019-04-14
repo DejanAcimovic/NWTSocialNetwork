@@ -31,6 +31,4 @@ public class Conf {
     public Exchange eventExchange() {
         return new TopicExchange("eventExchange");
     }
-
-
 }
