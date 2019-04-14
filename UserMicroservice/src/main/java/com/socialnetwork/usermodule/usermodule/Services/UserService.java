@@ -3,6 +3,8 @@ package com.socialnetwork.usermodule.usermodule.Services;
 import com.socialnetwork.usermodule.usermodule.Entities.User;
 import com.socialnetwork.usermodule.usermodule.Entities.UserGroup;
 import com.socialnetwork.usermodule.usermodule.Repositories.UserRepository;
+import org.springframework.amqp.core.Exchange;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,12 @@ import java.util.List;
 @Service
 public class UserService {
 
+    @Autowired
+    RabbitTemplate rabbitTemplate;
+
+    @Autowired
+    Exchange exchange;
+
     private UserRepository repository;
 
     @Autowired
@@ -18,16 +26,32 @@ public class UserService {
         this.repository = _repository;
     }
 
-    public User getUserById (Integer userId){
-        return repository.findById(userId);
+    public User getUserById (Integer userId) throws Exception {
+
+        User user = repository.findById(userId);
+        if (user == null)
+        {
+            throw new Exception("No user with this id found");
+        }
+        return user;
     }
 
-    public User getUserByFirstName (String firstName){
-        return repository.findByFirstName(firstName);
+    public User getUserByFirstName (String firstName) throws Exception {
+
+        User user = repository.findByFirstName(firstName);
+        if (user == null)
+        {
+            throw new Exception("No user with this name found");
+        }
+        return user;
     }
 
-    public List<User> getUserFriends (Integer user_id){
+    public List<User> getUserFriends (Integer user_id) throws Exception {
         User user = repository.findById(user_id);
+        if (user == null)
+        {
+            throw new Exception("No user with this id found");
+        }
         return user.getFriends();
     }
 
@@ -37,7 +61,11 @@ public class UserService {
     }
 
     public User saveNewUser (User user){
+
         this.repository.save(user);
+
+        String routingKey = "user.created";
+        rabbitTemplate.convertAndSend(exchange.getName(),routingKey, "E kreirao se novi user");
         return user;
     }
 
