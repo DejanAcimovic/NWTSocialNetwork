@@ -60,12 +60,12 @@ public class UserService {
         return user.getGroups();
     }
 
-    public User saveNewUser (User user){
+    public User saveNewUser (User user, String url){
 
         this.repository.save(user);
 
         String routingKey = "user.created";
-        rabbitTemplate.convertAndSend(exchange.getName(),routingKey, "E kreirao se novi user");
+        rabbitTemplate.convertAndSend(exchange.getName(),routingKey,user.getId().toString()+","+url);
         return user;
     }
 

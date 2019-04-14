@@ -7,6 +7,8 @@ public class UserDTO {
     private String firstName;
     private String lastName;
 
+    public String url;
+
     public String getFirstName() {
         return firstName;
     }

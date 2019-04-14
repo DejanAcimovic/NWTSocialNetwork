@@ -51,6 +51,19 @@ public class Config {
                 .to(eventExchange)
                 .with("post.created");
     }
+
+    @Bean
+    public Queue queue2() {
+        return new Queue("userServiceQueue");
+    }
+
+    @Bean
+    public Binding binding2(Queue queue2, TopicExchange eventExchange) {
+        return BindingBuilder
+                .bind(queue2)
+                .to(eventExchange)
+                .with("user.created");
+    }
     
     @Bean
     public EventConsumer eventReceiver() {
