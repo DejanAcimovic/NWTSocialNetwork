@@ -6,6 +6,9 @@ import com.netflix.ribbon.proxy.annotation.Http.HttpMethod;
 import com.socialnetwork.postModule.PostModule.Entities.Post;
 import com.socialnetwork.postModule.PostModule.Repositories.PostRepository;
 
+import org.springframework.amqp.core.Exchange;
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -20,6 +23,12 @@ public class PostService {
 
     @Autowired
     RestTemplate restTemplate;
+
+    @Autowired
+    RabbitTemplate rabbitTemplate;
+
+    @Autowired
+    Exchange exchange;
 
     private PostRepository repository;
 
@@ -46,11 +55,14 @@ public class PostService {
         String uri = UriComponentsBuilder.fromUriString("http://user-module/get/user/user_id")
             .queryParam("userId", post.getUserId()).toUriString();
         try {
-            String response = this.restTemplate.getForObject(uri, String.class);
+            //String response = this.restTemplate.getForObject(uri, String.class);
         } catch (Exception e) {
             throw new Exception("Invalid user_id");
         }
         this.repository.save(post);
+
+        String routingKey = "post.created";
+        rabbitTemplate.convertAndSend(exchange.getName(), routingKey, "E kreirao se novi post" + post.getText());
         return post;
     }
 
