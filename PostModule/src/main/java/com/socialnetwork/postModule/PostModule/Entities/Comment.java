@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Comment {
@@ -22,11 +24,15 @@ public class Comment {
     @Column
     private String text;
 
+    @Column 
+    private Integer userId;
+
     @ManyToOne
     @JoinColumn(name = "post_id")
+    @JsonIgnore
     private Post post;
 
-    @OneToMany(mappedBy = "comment")
+    @OneToMany(mappedBy = "comment", orphanRemoval = true)
     private List<CommentLikes> likes;
 
     public Integer getId() {
@@ -44,8 +50,20 @@ public class Comment {
     protected Comment() {
     }
 
-    public Comment(String _text, Post post) {
-        this.text = _text;
+    public Comment(String text, Post post, Integer userId) throws Exception {
+        if(text.replaceAll("\\s+","").equals(new String(""))){
+            throw new Exception("Comment text must not be empty");
+        }
+        this.text = text;
+
+        if(post == null){
+            throw new Exception("Post cannot be null");
+        }
         this.post = post;
+
+        if(userId < 0 || userId == null){
+            throw new Exception("User id cannot be null or less than one");
+        }
+        this.userId = userId;
     }
 }

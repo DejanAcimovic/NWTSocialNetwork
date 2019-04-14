@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PostRepository extends CrudRepository<Post, Long> {
     List<Post> findByUserId(Integer userId);
+    List<Post> findById(Integer id);
 }

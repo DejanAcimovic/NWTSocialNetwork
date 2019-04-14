@@ -14,12 +14,12 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
-@RestController
+@RestController 
 public class UserController {
     @Autowired
     private UserService service;
 
-    @RequestMapping(value = "get/user/{user_id}",method = RequestMethod.GET)
+    @RequestMapping(value = "get/user/user_id",method = RequestMethod.GET)
     public @ResponseBody
     User getUserById(@RequestParam("userId") Integer userId){
        try{
@@ -28,6 +28,7 @@ public class UserController {
        catch (Exception e){
            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
        }
+
     }
 
     @RequestMapping(value = "get/user/{first_name}",method = RequestMethod.GET)
