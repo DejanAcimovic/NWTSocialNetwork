@@ -18,16 +18,32 @@ public class UserService {
         this.repository = _repository;
     }
 
-    public User getUserById (Integer userId){
-        return repository.findById(userId);
+    public User getUserById (Integer userId) throws Exception {
+
+        User user = repository.findById(userId);
+        if (user == null)
+        {
+            throw new Exception("No user with this id found");
+        }
+        return user;
     }
 
-    public User getUserByFirstName (String firstName){
-        return repository.findByFirstName(firstName);
+    public User getUserByFirstName (String firstName) throws Exception {
+
+        User user = repository.findByFirstName(firstName);
+        if (user == null)
+        {
+            throw new Exception("No user with this name found");
+        }
+        return user;
     }
 
-    public List<User> getUserFriends (Integer user_id){
+    public List<User> getUserFriends (Integer user_id) throws Exception {
         User user = repository.findById(user_id);
+        if (user == null)
+        {
+            throw new Exception("No user with this id found");
+        }
         return user.getFriends();
     }
 
