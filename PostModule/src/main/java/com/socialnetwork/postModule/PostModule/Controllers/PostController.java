@@ -28,7 +28,17 @@ public class PostController {
     @Autowired
     private PostService service;
 
-    @RequestMapping(value="/posts/{userId}", method=RequestMethod.GET)
+    @RequestMapping(value="/posts/{id}", method=RequestMethod.GET)
+    public @ResponseBody Post getPostById(@PathVariable("id") Integer id) {
+        
+        try {
+            return service.GetPostById(id);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        }
+    }
+
+    @RequestMapping(value="/posts/users/{userId}", method=RequestMethod.GET)
     public @ResponseBody List<Post> getPostByUserId(@PathVariable("userId") Integer userId) {
         
         try {
@@ -41,7 +51,7 @@ public class PostController {
     @RequestMapping(value="/post", method=RequestMethod.POST)
     public @ResponseBody Post createNewPost(@RequestBody PostInsertDTO post) {
         try {
-            return service.SaveNewPost(post.toEntity());
+            return service.SaveNewPost(post.toEntity(), post.urls);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
