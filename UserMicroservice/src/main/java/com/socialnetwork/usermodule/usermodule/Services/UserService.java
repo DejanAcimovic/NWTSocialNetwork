@@ -13,17 +13,17 @@ import java.util.List;
 @Service
 public class UserService {
 
-    @Autowired
-    RabbitTemplate rabbitTemplate;
+    private RabbitTemplate rabbitTemplate;
 
-    @Autowired
-    Exchange exchange;
+    private Exchange exchange;
 
     private UserRepository repository;
 
     @Autowired
-    public UserService(UserRepository _repository){
+    public UserService(UserRepository _repository, Exchange exchange, RabbitTemplate rabbitTemplate){
         this.repository = _repository;
+        this.exchange = exchange;
+        this.rabbitTemplate = rabbitTemplate;
     }
 
     public User getUserById (Integer userId) throws Exception {
