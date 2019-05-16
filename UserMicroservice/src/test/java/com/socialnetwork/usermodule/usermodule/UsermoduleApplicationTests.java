@@ -38,23 +38,7 @@ public class UsermoduleApplicationTests {
 
     @Test
     public void userCreated() throws Exception {
-        RestTemplate restTemplate = new RestTemplate();
-     
-
-        User user = new User("test", "test");
-        String url = "http://tineye.com/images/widgets/mona.jpg";
-
-        UserService service = new UserService(repository, exchange, rabbitTemplate);
-        User str = service.saveNewUser(user, url);
-
-
-        final String baseUrl = "http://localhost:4321/picture/user/" + str.getId();
-
-        URI uri = new URI(baseUrl);
-
-        String response = restTemplate.getForObject(baseUrl, String.class);
-        
-        Assert.assertNotNull(response);
+       
         
     }
 
