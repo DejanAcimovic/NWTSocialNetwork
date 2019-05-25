@@ -1,0 +1,23 @@
+    .Signup {
+      padding: 50px 20px;
+      background-color: #4996da;
+      border-radius: 20px;
+    }
+
+    .second-box {
+      width:300px; 
+      height: 150px; 
+      float:right; 
+      margin: 50px;
+      color: white;
+      margin-right: 250px;
+    }
+
+    .btnSignup{
+      color: white;
+      background-color: #105796;
+      border-radius:15px;
+      border: none;
+      padding: 10px;
+      margin-top: 10px;
+    }
