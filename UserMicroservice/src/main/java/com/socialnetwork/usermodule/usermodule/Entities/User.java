@@ -93,19 +93,21 @@ public class User {
         boolean valid = _firstName.matches("(?i)(^[a-z])((?![ .,'-]$)[a-z .,'-]){0,24}$");
         boolean validLast = _lastName.matches("(?i)(^[a-z])((?![ .,'-]$)[a-z .,'-]){0,24}$");
         // Has only one @, at least one character before the @, before the period and after it:
-        boolean validEmail = _email.matches("^[^@]+@[^@]+\.[^@]+$"); 
+        boolean validEmail = _email.matches("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$/");
 
-        if(valid==true && validLast==true && validEmail==true) {
+        if(valid==true && validLast==true) {
             this.firstName = _firstName;
             this.lastName = _lastName;
             this.username = _username;
             this.email = _email;
-            this.password = password;
+            this.password = _password;
             this.groups = new ArrayList<UserGroup>();
         }
 
         else
+        {
             throw new Exception("Parameters invalid");
+        }
     }
 
     public List<User> getFriends() {
