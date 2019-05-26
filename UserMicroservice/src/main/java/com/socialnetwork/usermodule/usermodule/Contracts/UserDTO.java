@@ -11,6 +11,8 @@ public class UserDTO {
     private String password;
 
 
+    public String url;
+
     public String getFirstName() {
         return firstName;
     }

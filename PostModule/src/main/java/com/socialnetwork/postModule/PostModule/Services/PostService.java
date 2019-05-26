@@ -2,11 +2,14 @@ package com.socialnetwork.postModule.PostModule.Services;
 
 import java.util.List;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.netflix.ribbon.proxy.annotation.Http.HttpMethod;
+import com.socialnetwork.postModule.PostModule.Contracts.PicturesDTO;
 import com.socialnetwork.postModule.PostModule.Entities.Post;
 import com.socialnetwork.postModule.PostModule.Repositories.PostRepository;
 
 import org.springframework.amqp.core.Exchange;
+import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +54,7 @@ public class PostService {
         return posts.get(0);
     }
 
-    public Post SaveNewPost(Post post) throws Exception {
+    public Post SaveNewPost(Post post, List<String> urls) throws Exception {
         String uri = UriComponentsBuilder.fromUriString("http://user-module/get/user/user_id")
             .queryParam("userId", post.getUserId()).toUriString();
         try {
@@ -62,7 +65,12 @@ public class PostService {
         this.repository.save(post);
 
         String routingKey = "post.created";
-        rabbitTemplate.convertAndSend(exchange.getName(), routingKey, "E kreirao se novi post" + post.getText());
+        PicturesDTO pictures = new PicturesDTO();
+        pictures.urls = urls;
+        pictures.id = post.getId();
+        ObjectMapper mapper = new ObjectMapper();
+        String message =    mapper.writeValueAsString(pictures);
+        rabbitTemplate.convertAndSend(exchange.getName(), routingKey, message);
         return post;
     }
 

@@ -51,7 +51,7 @@ public class PostController {
     @RequestMapping(value="/post", method=RequestMethod.POST)
     public @ResponseBody Post createNewPost(@RequestBody PostInsertDTO post) {
         try {
-            return service.SaveNewPost(post.toEntity());
+            return service.SaveNewPost(post.toEntity(), post.urls);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }

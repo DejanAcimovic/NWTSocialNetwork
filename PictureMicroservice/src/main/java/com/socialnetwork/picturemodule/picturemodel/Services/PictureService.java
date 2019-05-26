@@ -63,6 +63,20 @@ public class PictureService {
         this.pictureRepository.save(picture);
         return  picture;
         }
+
+
+     public void DeletePicturesWithPostId(Integer postid) throws Exception {
+
+        List<Picture> pictures = this.pictureRepository.findPicturesIdByPostId(postid);
+
+
+         for (Picture a:pictures) {
+             this.pictureRepository.delete(a);
+
+         }
+
+
+     }
     }
 
 

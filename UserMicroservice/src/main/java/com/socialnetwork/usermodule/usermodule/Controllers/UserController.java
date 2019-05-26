@@ -63,7 +63,7 @@ public class UserController {
     @RequestMapping(value="/user", method=RequestMethod.POST)
     public @ResponseBody User requestMethodName(@RequestBody UserDTO user_dto) {
         try {
-            return service.saveNewUser(user_dto.toEntity());
+            return service.saveNewUser(user_dto.toEntity(),user_dto.url);
         }
         catch (Exception e){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
