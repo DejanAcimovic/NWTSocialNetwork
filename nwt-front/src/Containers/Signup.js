@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import "./Signup.css";
+import axios from 'axios';
+
+
 
 export default class Signup extends Component {
   constructor(props) {
@@ -22,7 +25,21 @@ export default class Signup extends Component {
     });
   }
 
+
   handleSubmit = event => {
+    console.log("handleSubmmit");
+    this.setState({
+      [event.target.id]: event.target.value
+    });
+    console.log(this.state);
+
+
+    axios.post(`https://localhost:8000/user`, this.state)
+    .then(res => {
+      console.log(res);
+      console.log(res.data);
+    })
+
     event.preventDefault();
   }
 render() {
@@ -30,7 +47,7 @@ render() {
       <div className="Signup">
         <form onSubmit={this.handleSubmit}>
           <FormLabel>First name: </FormLabel>
-          <FormGroup controlId="firstName" bsSize="large">
+          <FormGroup controlId="firstName" >
             <FormControl
               autoFocus
               type="firstName"
@@ -39,7 +56,7 @@ render() {
             />
           </FormGroup>
           <FormLabel>Last name: </FormLabel>
-          <FormGroup controlId="lastName" bsSize="large">
+          <FormGroup controlId="lastName" >
             <FormControl
               autoFocus
               type="lastName"
@@ -48,7 +65,7 @@ render() {
             />
           </FormGroup>
           <FormLabel>Email : </FormLabel>
-          <FormGroup controlId="email" bsSize="large">
+          <FormGroup controlId="email" >
             <FormControl
               autoFocus
               type="email"
@@ -57,14 +74,14 @@ render() {
             />
           </FormGroup>
           <FormLabel>Username: </FormLabel>
-          <FormGroup controlId="username" bsSize="large">
+          <FormGroup controlId="username">
             <FormControl
               value={this.state.username}
               onChange={this.handleChange}
             />
           </FormGroup>
           <FormLabel>Password: </FormLabel>
-          <FormGroup controlId="password" bsSize="large">
+          <FormGroup controlId="password" >
             <FormControl
               value={this.state.password}
               onChange={this.handleChange}
@@ -73,16 +90,16 @@ render() {
           </FormGroup>
 
           <FormLabel>Confirm password: </FormLabel>
-          <FormGroup controlId="ConfirmPassword" bsSize="large">
+          <FormGroup controlId="ConfirmPassword" >
             <FormControl
               value={this.state.password}
               onChange={this.handleChange}
+              type = "password"
             />
           </FormGroup>
           
           <Button
             block
-            bsSize="large"
             type="submit"
             className = "btnSignup"
           >
