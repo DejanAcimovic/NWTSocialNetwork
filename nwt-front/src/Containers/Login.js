@@ -27,7 +27,7 @@ export default class Login extends Component {
       <div className="Login">
         <form onSubmit={this.handleSubmit}>
           <FormLabel>Email: </FormLabel>
-          <FormGroup controlId="email" bsSize="large">
+          <FormGroup controlId="email" >
             <FormControl
               autoFocus
               type="email"
@@ -36,7 +36,7 @@ export default class Login extends Component {
             />
           </FormGroup>
           <FormLabel>Password: </FormLabel>
-          <FormGroup controlId="password" bsSize="large">
+          <FormGroup controlId="password" >
             <FormControl
               value={this.state.password}
               onChange={this.handleChange}
@@ -46,7 +46,6 @@ export default class Login extends Component {
             
           <Button
             block
-            bsSize="large"
             type="submit"
             className="btnLogin"
           >
