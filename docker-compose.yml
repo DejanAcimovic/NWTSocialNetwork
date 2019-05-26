@@ -4,8 +4,8 @@ services:
        image: rabbitmq:3.7.4-management
        hostname: rabbitmq
        ports:
-           - "5672:5672"
-           - "15672:15672"
+           - "5673:5673"
+           - "15673:15673"
        environment:
            RABBITMQ_DEFAULT_USER: guest
            RABBITMQ_DEFAULT_PASS: guest
