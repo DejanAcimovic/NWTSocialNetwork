@@ -31,9 +31,9 @@ public class UserSeeder implements ApplicationRunner {
 
         
         if(count == 0) {
-            userRepository.save(new User("Dejan","Acimovic"));
-            userRepository.save(new User("Adna","Tucak"));
-            userRepository.save(new User("Nada","Zilic"));
+            userRepository.save(new User("Dejan","Acimovic","dejo@gmail.com", "dejo","dejo"));
+            userRepository.save(new User("Adna","Tucak", "adna@gmail.com","adna", "adna"));
+            userRepository.save(new User("Nada","Zilic","nadja@gmail.com","nadja","nadja"));
 
             UserGroup newGroup = new UserGroup("GrupaJedan", null);
 
