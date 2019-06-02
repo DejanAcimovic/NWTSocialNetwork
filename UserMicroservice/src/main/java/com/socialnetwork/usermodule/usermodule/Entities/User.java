@@ -14,7 +14,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.JoinColumn;
 
-
 @Entity
 public class User {
     @Id
@@ -27,11 +26,17 @@ public class User {
 
     @Column
     private String lastName;
+    @Column
+    private String username;
+    @Column
+    private String password;
+    @Column
+    private String email;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinTable(name = "user_group_user",
-        joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(name = "user_group_id", referencedColumnName = "id"))
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "user_group_id", referencedColumnName = "id"))
     private List<UserGroup> groups = new ArrayList<>();
 
     @ManyToMany
@@ -60,6 +65,12 @@ public class User {
         return lastName;
     }
 
+    public String getUsername() {
+        return username;
+    }
+    public String getEmail() {
+        return email;
+    }
 
     public void addUserGroup(UserGroup group){
         this.getGroups().add(group);
@@ -72,23 +83,30 @@ public class User {
     protected User() {}
 
 
-    public User(String _firstName, String _lastName) throws Exception {
+    public User(String _firstName, String _lastName, String _email, String _password, String _username) throws Exception {
 
-        boolean valid = _firstName.matches("(?i)(^[a-z])((?![ .,'-]$)[a-z .,'-]){0,24}$");
-        boolean validLast = _lastName.matches("(?i)(^[a-z])((?![ .,'-]$)[a-z .,'-]){0,24}$");
         //The first name is between 1 and 25 characters.
         //The first name can only start with an a-z (ignore case) character.
         //After that the first name can contain a-z (ignore case) and [ '-,.].
         //The first name can only end with an a-z (ignore case) character.
+        boolean valid = _firstName.matches("(?i)(^[a-z])((?![ .,'-]$)[a-z .,'-]){0,24}$");
+        boolean validLast = _lastName.matches("(?i)(^[a-z])((?![ .,'-]$)[a-z .,'-]){0,24}$");
+        // Has only one @, at least one character before the @, before the period and after it:
+        boolean validEmail = _email.matches("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$/");
 
         if(valid==true && validLast==true) {
             this.firstName = _firstName;
             this.lastName = _lastName;
+            this.username = _username;
+            this.email = _email;
+            this.password = _password;
             this.groups = new ArrayList<UserGroup>();
         }
 
         else
+        {
             throw new Exception("Parameters invalid");
+        }
     }
 
     public List<User> getFriends() {
