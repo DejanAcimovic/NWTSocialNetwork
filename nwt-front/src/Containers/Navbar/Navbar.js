@@ -59,9 +59,9 @@ export default class Login extends Component {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <NavLink to="/profile" > My Profile</NavLink>
+                    <NavLink to="/profile" > My Profile </NavLink>
                     {"   "}
-                    <NavLink to="/group">Create Group</NavLink>
+                    <NavLink to="/group"> Create Group </NavLink>
                     {"   "}
                     <NavLink >Sign Out</NavLink>
                 </Nav>

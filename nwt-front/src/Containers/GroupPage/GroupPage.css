@@ -1,0 +1,34 @@
+.media{
+    padding: 10px;
+}
+
+.mr-3, .mx-3 {
+    align-content: center;
+}
+.h5, h5, .p, p{
+    text-align: start;
+    padding: 7px;
+}
+
+.h4, h4{
+    padding: 20px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover{
+    color:#0455ace7
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+    padding: 5px;
+    margin: 5px;
+    margin-left: 500px;
+}
