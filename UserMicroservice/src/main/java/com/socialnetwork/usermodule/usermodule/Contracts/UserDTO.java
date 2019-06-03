@@ -41,7 +41,7 @@ public class UserDTO {
 
     public User toEntity () throws Exception{
 
-            return new User(this.firstName, this.lastName, this.email, this.password, this.username);
+        return new User(this.firstName, this.lastName, this.email, this.password, this.username);
 
     }
 }

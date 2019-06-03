@@ -34,9 +34,9 @@ export default class Signup extends Component {
     console.log(this.state);
 
 
-    axios.post(`https://localhost:8084/userUI/user`, this.state)
+    axios.post(`http://localhost:8000/user`, this.state)
     .then(res => {
-      console.log(res);
+      console.log("u axiosu sam",res);
       console.log(res.data);
     })
 

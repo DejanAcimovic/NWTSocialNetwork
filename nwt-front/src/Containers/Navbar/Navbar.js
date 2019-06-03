@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Button, FormControl, Navbar, Nav, Form, Modal } from "react-bootstrap";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
+import "./Navbar.css";
+
 
 export default class Login extends Component {
   constructor(props) {
@@ -51,14 +54,16 @@ export default class Login extends Component {
   render() {
     return (
       <div className="Navbar">
-          <Navbar bg="primary" expand="lg">
-            <Navbar.Brand href="#home">Social Network</Navbar.Brand>
+          <Navbar expand="lg">
+            <Navbar.Brand color="white">Social Network</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <Nav.Link href="#home" >My Profile</Nav.Link>
-                    <Nav.Link href="#link">Create Group</Nav.Link>
-                    <Nav.Link href="#link">Sign Out</Nav.Link>
+                    <NavLink to="/profile" > My Profile </NavLink>
+                    {"   "}
+                    <NavLink to="/group"> Create Group </NavLink>
+                    {"   "}
+                    <NavLink >Sign Out</NavLink>
                 </Nav>
 
                     <Form inline>
