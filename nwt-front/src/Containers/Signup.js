@@ -12,8 +12,8 @@ export default class Signup extends Component {
     this.state = {
         firstName : "",
         lastName : "",
-        username : "",
         email: "",
+        username : "",
         password: "",
         confirmPassword: ""
     };
@@ -31,16 +31,17 @@ export default class Signup extends Component {
     this.setState({
       [event.target.id]: event.target.value
     });
-    console.log(this.state);
+      
+      console.log(this.state);
 
+      axios.post(`http://localhost:8084/userUI/user`, this.state)
+      .then(res => {
+        console.log("u axiosu sam",res);
+        console.log(res.data);
+      });
+    
+      event.preventDefault();
 
-    axios.post(`http://localhost:8000/user`, this.state)
-    .then(res => {
-      console.log("u axiosu sam",res);
-      console.log(res.data);
-    })
-
-    event.preventDefault();
   }
 render() {
     return (
