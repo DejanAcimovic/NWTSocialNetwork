@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import "./Login.css";
+import axios from "axios";
 
 export default class Login extends Component {
   constructor(props) {
@@ -18,19 +19,28 @@ export default class Login extends Component {
     });
   }
 
-  handleSubmit = event => {
-    event.preventDefault();
+  handleSubmit = (event) => {
+
+    axios.post("http://localhost:8084/userUI/login", this.state)
+    .then((response)=>{
+      localStorage.setItem('token', response.data);
+      console.log(response.data);
+    })
+    .catch(err => {
+      console.log(err.message);
+    });
+
   }
 
   render() {
     return (
       <div className="Login">
         <form onSubmit={this.handleSubmit}>
-          <FormLabel>Email: </FormLabel>
+          <FormLabel>Username: </FormLabel>
           <FormGroup controlId="email" >
             <FormControl
               autoFocus
-              type="email"
+              type="text"
               value={this.state.email}
               onChange={this.handleChange}
             />
@@ -46,8 +56,8 @@ export default class Login extends Component {
             
           <Button
             block
-            type="submit"
             className="btnLogin"
+            onClick = {this.handleSubmit}
           >
             Login
           </Button>
