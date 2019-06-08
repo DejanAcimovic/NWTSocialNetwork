@@ -90,9 +90,9 @@ render() {
           </FormGroup>
 
           <FormLabel>Confirm password: </FormLabel>
-          <FormGroup controlId="ConfirmPassword" >
+          <FormGroup controlId="confirmPassword" >
             <FormControl
-              value={this.state.password}
+              value={this.state.confirmPassword}
               onChange={this.handleChange}
               type = "password"
             />
