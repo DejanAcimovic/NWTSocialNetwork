@@ -33,7 +33,9 @@ export default class ProfilePage extends Component {
       url: "",
       showProfile: false,
       urlProfile: "",
-      profileShow: false
+      profileShow: false,
+      likeText: "Like",
+      liked: false
     };
   }
   
@@ -81,6 +83,13 @@ export default class ProfilePage extends Component {
       profileShow: true
     });
     this.handleClose()
+  }
+
+  handleLike = () => {
+    this.setState({
+    liked: !this.state.liked,
+    likeText: this.state.liked ? "Unlike" : "Like"
+    });
   }
 
   render() {
@@ -173,7 +182,7 @@ export default class ProfilePage extends Component {
           </p>
             </Row>
             <Row>
-          <Button variant="Primary" class="btn btn-success btn-lg">Like</Button>
+          <Button variant="Primary" class="btn btn-success btn-lg" onClick={this.handleLike}>{this.state.likeText}</Button>
             <ButtonToolbar>
               {['right'].map(placement => (
                <OverlayTrigger
@@ -220,7 +229,7 @@ export default class ProfilePage extends Component {
           </Row>
         
           <Row>
-          <Button variant="Primary" class="btn btn-success btn-lg">Like</Button>
+          <Button variant="Primary" class="btn btn-success btn-lg" onClick={this.handleLike}>{this.state.likeText}</Button>
             <ButtonToolbar>
               {['right'].map(placement => (
                <OverlayTrigger
