@@ -21,9 +21,25 @@ export default class GroupPage extends Component {
     this.handleClose = this.handleClose.bind(this);
 
     this.state = {
-      show: false
+      show: false,
+      list: [],
+      groupName: "",
+      groupDescription: "",
+      groupMember:"",
+      visible: false, 
+      newGroupName:""
     };
   }
+
+  onGroupNameChange = (event) => {
+        
+    this.setState({ 
+      newGroupName: event 
+    });
+
+  }
+
+
 
   handleClose() {
     this.setState({ show: false });
@@ -31,6 +47,13 @@ export default class GroupPage extends Component {
 
   handleShow() {
     this.setState({ show: true });
+  }
+
+  handleSave = () => {
+    this.setState({
+      list: [...this.state.list, this.state.newGroupName]
+    });
+    this.handleClose();
   }
 
   render() {
@@ -52,7 +75,7 @@ export default class GroupPage extends Component {
                   <Modal.Body>
                     <Form>
                         <Form.Label>Group name: </Form.Label>
-                        <Form.Control placeholder="Enter group name" />                      
+                        <Form.Control onChange={e => this.onGroupNameChange(e.target.value)} placeholder="Enter group name" />                      
                         <Form.Label>Description: </Form.Label>
                         <Form.Control placeholder="Enter group description" />
                         <Form.Label>Add member: </Form.Label>
@@ -63,7 +86,7 @@ export default class GroupPage extends Component {
                     <Button variant="secondary" onClick={this.handleClose}>
                       Close
                     </Button>
-                    <Button variant="primary" onClick={this.handleClose}>
+                    <Button variant="primary" onClick={this.handleSave}>
                       Save Changes
                     </Button>
                   </Modal.Footer>
@@ -115,7 +138,7 @@ export default class GroupPage extends Component {
                   <p>Donec lacinia congue felis in faucibus.</p>
                 </Media.Body>
               </Media>
-            </Col>
+           </Col>
             <Col sm={4}>
               <h4>Description</h4>
               <p>
@@ -128,6 +151,13 @@ export default class GroupPage extends Component {
                 scelerisque ante sollicitudin commodo.
               </p>
               <Button>Join Group / Leave group</Button>
+              <p>
+                Other groups: </p>
+                <p>
+              {       this.state.list.map(group =>  <div>
+                {group}
+              </div> )}
+              </p>
             </Col>
           </Row>
         </Container>
