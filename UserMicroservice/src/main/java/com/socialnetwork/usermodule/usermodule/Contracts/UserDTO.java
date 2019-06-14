@@ -4,30 +4,12 @@ import com.socialnetwork.usermodule.usermodule.Entities.User;
 
 public class UserDTO {
 
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String username;
-    private String password;
-
-
+    public String firstName;
+    public String lastName;
+    public String email;
+    public String username;
+    public String password;
     public String url;
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 
     public UserDTO (String _firstName, String _lastName, String _email, String _password, String _username ){
         this.firstName = _firstName;
@@ -41,7 +23,7 @@ public class UserDTO {
 
     public User toEntity () throws Exception{
 
-            return new User(this.firstName, this.lastName, this.email, this.password, this.username);
+        return new User(this.firstName, this.lastName, this.email, this.password, this.username);
 
     }
 }

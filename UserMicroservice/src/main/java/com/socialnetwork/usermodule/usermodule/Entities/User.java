@@ -14,7 +14,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.JoinColumn;
 
-
 @Entity
 public class User {
     @Id
@@ -36,8 +35,8 @@ public class User {
 
     @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinTable(name = "user_group_user",
-        joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(name = "user_group_id", referencedColumnName = "id"))
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "user_group_id", referencedColumnName = "id"))
     private List<UserGroup> groups = new ArrayList<>();
 
     @ManyToMany
@@ -65,7 +64,6 @@ public class User {
     public String getLastName() {
         return lastName;
     }
-    
     public String getUsername() {
         return username;
     }
