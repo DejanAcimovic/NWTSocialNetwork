@@ -1,0 +1,104 @@
+version: '3'
+services:
+    rabbitmq:
+       image: rabbitmq:3.7.4-management
+       hostname: rabbitmq
+       ports:
+           - "5673:5673"
+           - "15673:15673"
+       environment:
+           RABBITMQ_DEFAULT_USER: guest
+           RABBITMQ_DEFAULT_PASS: guest
+       networks:
+           - emp-network
+    eureka-server:
+        container_name: eureka-server
+        build:
+            context: .
+            dockerfile: /servicediscovery/Dockerfile
+        image: eureka-server:latest
+        expose:
+            - 8761
+        ports:
+            - 8761:8761
+        networks:
+            - emp-network
+    user-service:
+        container_name: user-service
+        build:
+            context: .
+            dockerfile: /UserMicroservice/Dockerfile
+        image: user-service:latest
+        entrypoint: /opt/bin/user-entrypoint.sh
+        expose:
+            - 8000
+        ports:
+            - 8000:8000
+        networks:
+            - emp-network
+        links:
+            - eureka-server:eureka-server
+        depends_on:
+            - eureka-server
+        logging:
+            driver: json-file
+    post-service:
+        container_name: post-service
+        build:
+            context: .
+            dockerfile: /PostModule/Dockerfile
+        image: post-service:latest
+        entrypoint: /opt/bin/post-entrypoint.sh
+        expose:
+            - 1234
+        ports:
+            - 1234:1234
+        networks:
+            - emp-network
+        links:
+            - eureka-server:eureka-server
+        depends_on:
+            - eureka-server
+        logging:
+            driver: json-file
+    picture-service:
+        container_name: picture-service
+        build:
+            context: .
+            dockerfile: /PictureMicroservice/Dockerfile
+        image: picture-service:latest
+        entrypoint: /opt/bin/picture-entrypoint.sh
+        expose:
+            - 4321
+        ports:
+            - 4321:4321
+        networks:
+            - emp-network
+        links:
+            - eureka-server:eureka-server
+        depends_on:
+            - eureka-server
+        logging:
+            driver: json-file
+    apigateway-server:
+        container_name: apigateway-server
+        build:
+            context: .
+            dockerfile: /apigateway/Dockerfile
+        image: apigateway-server:latest
+        entrypoint: /opt/bin/apigateway-entrypoint.sh
+        expose:
+            - 8084
+        ports:
+            - 8084:8084
+        networks:
+            - emp-network
+        links:
+            - eureka-server:eureka-server
+        depends_on:
+            - eureka-server
+        logging:
+            driver: json-file
+networks:
+    emp-network:
+        driver: bridge
