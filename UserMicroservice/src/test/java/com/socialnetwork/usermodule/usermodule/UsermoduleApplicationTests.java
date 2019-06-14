@@ -38,7 +38,6 @@ public class UsermoduleApplicationTests {
 
     @Test
     public void userCreated() throws Exception {
-       
         
     }
 
