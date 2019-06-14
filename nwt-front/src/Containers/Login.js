@@ -8,7 +8,7 @@ export default class Login extends Component {
     super(props);
 
     this.state = {
-      email: "",
+      username: "",
       password: ""
     };
   }
@@ -20,7 +20,7 @@ export default class Login extends Component {
   }
 
   handleSubmit = (event) => {
-
+    console.log(this.state);
     axios.post("http://localhost:8084/userUI/login", this.state)
     .then((response)=>{
       localStorage.setItem('token', response.data);
@@ -37,11 +37,11 @@ export default class Login extends Component {
       <div className="Login">
         <form onSubmit={this.handleSubmit}>
           <FormLabel>Username: </FormLabel>
-          <FormGroup controlId="email" >
+          <FormGroup controlId="username" >
             <FormControl
               autoFocus
               type="text"
-              value={this.state.email}
+              value={this.state.username}
               onChange={this.handleChange}
             />
           </FormGroup>
